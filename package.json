@@ -1,0 +1,7 @@
+{
+    "name": "touchFeedback.js",
+    "license": "MIT",
+    "devDependencies": {
+        "browser-sync": "^2.9.3",
+    }
+}

@@ -1,22 +1,25 @@
-/*!touchFeedback - https://github.com/backToNature/touchFeedback/*/
+/*
+!touchFeedback - https://github.com/backToNature/touchFeedback/
+*/
+
 !(function () {
     var eventBind = function (container, bindProp, feedbackClass) {
         var eventData = {};
         var classUtil = {
-            hasClass: function (elem, cls){
+            hasClass: function (elem, cls) {
                 cls = cls || '';
-                if(cls.replace(/\s/g, '').length == 0) return false;
+                if (cls.replace(/\s/g, '').length == 0) return false;
                 return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
             },
-            addClass: function (elem, cls){
-                if(!this.hasClass(elem, cls)){
+            addClass: function (elem, cls) {
+                if (!this.hasClass(elem, cls)) {
                     elem.className += ' ' + cls;
                 }
             },
-            removeClass: function (elem, cls){
-                if(this.hasClass(elem, cls)){
+            removeClass: function (elem, cls) {
+                if (this.hasClass(elem, cls)) {
                     var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, '') + ' ';
-                    while(newClass.indexOf(' ' + cls + ' ') >= 0){
+                    while (newClass.indexOf(' ' + cls + ' ') >= 0) {
                         newClass = newClass.replace(' ' + cls + ' ', ' ');
                     }
                     elem.className = newClass.replace(/^\s+|\s+$/g, '');
@@ -54,6 +57,7 @@
             }
         });
     };
+
     var TouchFeedback = function (selector, option) {
         this._container = document.querySelector(selector);
         option = option || {};
@@ -61,6 +65,7 @@
         this._feedbackClass = option.feedbackClass || 'feedback';
         eventBind(this._container, this._bindProp, this._feedbackClass);
     };
+
     TouchFeedback.prototype.destory = function () {
         var _this = this;
         _this._container.removeEventListener('touchstart');
@@ -70,7 +75,7 @@
     };
 
     if (typeof define === 'function') {
-        define(function() {
+        define(function () {
             return TouchFeedback;
         });
     } else if (typeof exports !== 'undefined') {
